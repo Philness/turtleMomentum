@@ -40,7 +40,7 @@ function getWeather(position){
         userTemp = Math.floor(parseInt(data.list[1].main.temp));        //place the returned temperature...
         $("#weather-data").text(userTemp);
         userCity = data.list[1].name;                                   //...and the city name...
-        $("#location-data").text(userCity);
+        $("#location-data").text(userCity.toUpperCase());
         userWeather = data.list[1].weather[0].main;                     //change the background based on the weather
         unsplashURL = "https://source.unsplash.com/featured/?" + userWeather;
 

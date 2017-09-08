@@ -3,12 +3,13 @@ $(document).ready(function() {
     clockInterval = setInterval(updateTime, 1000);
     messageInterval = setInterval(updateMessage, 20000);
     greetingInterval = setInterval(updateGreeting, 10000);
-    getLocation();
+    //getLocation();
 
     //set the event listener for the todo list to be triggered by the enter key
     $("#todo-input").keyup(function(e){
         if(e.which === 13){
             addTodo();
+            getLocation();
         }
     })
 

@@ -3,13 +3,13 @@ $(document).ready(function() {
     clockInterval = setInterval(updateTime, 1000);
     messageInterval = setInterval(updateMessage, 20000);
     greetingInterval = setInterval(updateGreeting, 10000);
-    //getLocation();
+    getLocation();
 
     //set the event listener for the todo list to be triggered by the enter key
     $("#todo-input").keyup(function(e){
         if(e.which === 13){
             addTodo();
-            getLocation();
+            //getLocation();
         }
     })
 
@@ -19,23 +19,26 @@ var greetingArray = ["my bromide.", "you stunner.", "you rockstar.", "master.", 
 var todoArray = ["Type in more things to do!"];
 var timeDescriptor;
 var timeToDisplayGreeting = true;
-const OPEN_WEATHER_URL = "http://api.openweathermap.org/data/2.5/find?units=imperial&appid=3ed0cd621db826abd51c3d2236e32583";
+const OPEN_WEATHER_URL = "https://api.openweathermap.org/data/2.5/find?units=imperial&appid=3ed0cd621db826abd51c3d2236e32583";
 
 
 // weather retrieval function, run once
+//need to make a POST request to: https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBFIxMLWiydEOVIbJ4FbELaMD_y5TOsbyk
+//returns "location"."lat" and "location"."lng"
 function getLocation(){
-    console.log("running get location");
-    if (navigator.geolocation) {                                        //get position data and pass it to getWeather()
-        navigator.geolocation.getCurrentPosition(getWeather);
-    } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-}
+    $.ajax({
+        url: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBFIxMLWiydEOVIbJ4FbELaMD_y5TOsbyk",
+        method: "POST"
+
+    }).done(getWeather)
+ }
+
 
 function getWeather(position){
+    console.log(position.location);
     $.getJSON(OPEN_WEATHER_URL, {                                       //call the weather api with the lat and lon specified by getLocation()
-        lat: position.coords.latitude,
-        lon: position.coords.longitude
+        lat: position.location.lat,
+        lon: position.location.lng
     }).done(function(data){
         if (data.cod === "200"){                                        //if the api returned a success code...
         console.log(data);

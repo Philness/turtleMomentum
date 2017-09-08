@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Philness/turtleMomentum/issues"
   },
-  "homepage": "https://github.com/Philness/turtleMomentum#readme"
+  "homepage": "https://github.com/Philness/turtleMomentum#readme",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
 }

@@ -12,7 +12,7 @@ $(document).ready(function() {
         }
     })
 
-    //TODO: Call the weather API
+    // Call the weather API
 })
 var greetingArray = ["my bromide.", "you stunner.", "you rockstar.", "master.", "your grace.", "mon capitan!"];
 var todoArray = ["Type in more things to do!"];
@@ -21,8 +21,9 @@ var timeToDisplayGreeting = true;
 const OPEN_WEATHER_URL = "http://api.openweathermap.org/data/2.5/find?units=imperial&appid=3ed0cd621db826abd51c3d2236e32583";
 
 
-// TODO: weather retrieval function, run once
+// weather retrieval function, run once
 function getLocation(){
+    console.log("running get location");
     if (navigator.geolocation) {                                        //get position data and pass it to getWeather()
         navigator.geolocation.getCurrentPosition(getWeather);
     } else { 
@@ -39,7 +40,7 @@ function getWeather(position){
         console.log(data);
         userTemp = Math.floor(parseInt(data.list[1].main.temp));        //place the returned temperature...
         $("#weather-data").text(userTemp);
-        userCity = data.list[1].name;                                   //...and the city name...
+        userCity = data.list[0].name;                                   //...and the city name...
         $("#location-data").text(userCity.toUpperCase());
         userWeather = data.list[1].weather[0].main;                     //change the background based on the weather
         unsplashURL = "https://source.unsplash.com/featured/?" + userWeather;

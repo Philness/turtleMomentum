@@ -133,7 +133,7 @@ function addTodo(){                                            //get the value i
 // function that calls the quote api and print the message, run each minute
 function updateMessage(){
     $("#quote-block").animate({opacity: '0'});                                               //fade out the current message
-    var quoteURL = "http://api.icndb.com/jokes/random?firstName=CHUCK&lastName=NORRIS";     //get the JSON from the quote API
+    var quoteURL = "https://api.icndb.com/jokes/random?firstName=CHUCK&lastName=NORRIS";     //get the JSON from the quote API
     setTimeout(function(){                                                                  //make sure the message doesn't appear until the fadeout is complete
         $.getJSON(quoteURL).done(function(data){                                            //extract the value
         console.log(data.value.joke);
